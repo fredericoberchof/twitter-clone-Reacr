@@ -1,89 +1,27 @@
 import React from 'react';
+import { ElementFlags } from 'typescript';
 
-import Button from '../Button';
+import { Container, Item, Title } from './styles';
 
-import {
-  Container,
-  Topside,
-  Logo,
-  MenuButton,
-  HomeIcon,
-  BellIcon,
-  EmailIcon,
-  ProfileIcon,
-  HashIcon,
-  BookmarksIcon,
-  ListIcon,
-  MoreIcon,
-  FeatherIcon,
-  ExitIcon,
-  ProfileData,
-  Botside,
-  Avatar
-} from './styles';
+interface Props {
+  title: string;
+  elements: React.ReactNode[];
+}
 
-const MenuBar: React.FC = () => {
+const List: React.FC<Props> = ({
+  title, elements
+}) => {
   return (
     <Container>
-      <Topside>
-        <Logo />
+      <Item>
+        <Title>{title}</Title>
+      </Item>
 
-        <MenuButton>
-          <HomeIcon />
-          <span>Home</span>
-        </MenuButton>
-
-        <MenuButton>
-          <HashIcon />
-          <span>Explore</span>
-        </MenuButton>
-
-        <MenuButton>
-          <BellIcon />
-          <span>Notifications</span>
-        </MenuButton>
-
-        <MenuButton>
-          <EmailIcon />
-          <span>Mensagens</span>
-        </MenuButton>
-
-        <MenuButton>
-          <BookmarksIcon />
-          <span>Bookmarks</span>
-        </MenuButton>
-
-        <MenuButton>
-          <ListIcon />
-          <span>List</span>
-        </MenuButton>
-
-        <MenuButton className="active">
-          <ProfileIcon />
-          <span>Perfil</span>
-        </MenuButton>
-
-        <MenuButton>
-          <MoreIcon />
-          <span>More</span>
-        </MenuButton>
-
-        <Button>
-          <FeatherIcon />
-          <span>Tweet</span>
-        </Button>
-      </Topside>
-
-        <Botside>
-          <Avatar />
-          <ProfileData>
-            <strong>Fred Berchof</strong>
-            <span>@berchof</span>
-          </ProfileData>
-          <ExitIcon />
-        </Botside>
+      {elements.map((element, index) => (
+        <Item key={index}>{element}</Item>
+      ))}
     </Container>
-  );
-};
+  )
+}
 
-export default MenuBar;
+export default List;
